@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node ./build/bundle.min.js",
+    "build": "rollup -c"
   },
   "author": "",
   "license": "ISC",
@@ -14,6 +15,11 @@
     "consola": "^2.15.3",
     "moment": "^2.29.4",
     "node-cron": "^3.0.1",
+    "rollup-plugin-eslint": "^7.0.0",
+    "rollup-plugin-uglify": "^6.0.4",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "rollup": "^2.77.0"
   }
 }
