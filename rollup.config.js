@@ -1,6 +1,5 @@
 // Rollup plugins
-import uglify from "rollup-plugin-uglify";
-
+import { terser } from "rollup-plugin-terser";
 export default {
   input: "index.js",
   output: {
@@ -8,5 +7,5 @@ export default {
     sourcemap: true,
     format: "cjs",
   },
-  plugins: [uglify.uglify()],
+  plugins: [terser()],
 };
