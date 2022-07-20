@@ -7,11 +7,29 @@ const chalk = require("chalk");
     More at https://www.npmjs.com/package/node-cron
 */
 
-const timePattern = "00 00 12 * * 0-6";
+// const timePattern = "* * * * *";         // run at every minute
+const timePattern = "00 00 12 * * 0-6"; // run at 12:00AM according to timezone
 const timeZone = "Asia/Tokyo";
+const axios = require("axios").default;
+
+function triggerHook(url) {
+  axios
+    .get(url)
+    .then(function (response) {
+      consola.info(response);
+      consola.success("  Job completed successfully !");
+    })
+    .catch(function (error) {
+      consola.error("Error fetching the api");
+      consola.error(error);
+    })
+    .then(() => {
+      consola.info("  Rescheduled the next task ");
+    });
+}
 
 function _(timePattern, timeZone) {
-  consola.info("  Job Scheduler Started  !");
+  consola.info("  Job Scheduler Started !");
   cron.schedule(
     timePattern,
     () => {
@@ -20,10 +38,7 @@ function _(timePattern, timeZone) {
           timeZone
         )} timezone`
       );
-      /*
-         Tasks to run
-      */
-      consola.success("  Job completed successfully !");
+      triggerHook("https://jsonplaceholder.typicode.com/todos/1"); // task to run
     },
     {
       timezone: timeZone,
