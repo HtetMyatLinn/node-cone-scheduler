@@ -2,6 +2,11 @@ const cron = require("node-cron");
 const consola = require("consola");
 const chalk = require("chalk");
 
+/*
+    Time Zone Pattern 
+    More at https://www.npmjs.com/package/node-cron
+*/
+
 const timePattern = "00 00 12 * * 0-6";
 const timeZone = "Asia/Tokyo";
 
@@ -15,6 +20,9 @@ function _(timePattern, timeZone) {
           timeZone
         )} timezone`
       );
+      /*
+         Tasks to run
+      */
       consola.success("  Job completed successfully !");
     },
     {
